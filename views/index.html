@@ -16,14 +16,15 @@
 
 			<form>
 				<label for="message">Something to say?</label>
-				<textarea class="message" type="text" autocomplete="off" id="textarea"></textarea>
-				<input type="submit">
+				<textarea v-model="message" class="message" type="text" autocomplete="off" id="textarea"></textarea>
+				<input @click.prevent="dispatchMessage" type="submit">
 			</form>
 		</section>
 
 		<section class="messages">
 			<ul id="messages">
 				<!-- render a new message component for every message -->
+				<newmessage :msg="message" v-for="message in messages"></newmessage>
 			</ul>
 		</section>
 	</main>
