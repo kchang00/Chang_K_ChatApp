@@ -1,6 +1,6 @@
 # Ontario Summer
 
-A chat app for the quiet ones.
+A chat app for the quiet ones. View the live link [here](https://k-chat-app.herokuapp.com/).
 
 ## Built with
 * **HTML5**
