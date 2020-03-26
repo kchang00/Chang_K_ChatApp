@@ -3,29 +3,29 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Socket IO Chat with Node!</title>
+	<title>ShyHi | Chat</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/main.css">
 	<script src="https://unpkg.com/vue"></script>
 </head>
 
 <body>
 	<main id="app">
-		<section class="form-container">
-			<label for="nickname">Your Nickname (optional)</label>
-			<input type="text" id="nickname" class="nickname" placeholder="What is your nickname?">
-
-			<form>
-				<label for="message">Something to say?</label>
-				<textarea v-model="message" class="message" type="text" autocomplete="off" id="textarea"></textarea>
-				<input @click.prevent="dispatchMessage" type="submit">
-			</form>
-		</section>
-
 		<section class="messages">
 			<ul id="messages">
 				<!-- render a new message component for every message -->
 				<newmessage :msg="message" v-for="message in messages"></newmessage>
 			</ul>
+		</section>
+		<section class="form-container">
+			<form>
+				<input type="text" id="nickname" class="nickname" placeholder="Anonymous (Change nickname)">
+				<div class="msg-btn-con">
+					<textarea v-model="message" class="message" type="text" autocomplete="off" id="textarea" placeholder="Say something..."></textarea>
+					<button @click.prevent="dispatchMessage" id="subBtn"><i class="fa fa-paper-plane-o"></i></button>
+				</div>
+			</form>
 		</section>
 	</main>
 	<script src="/socket.io/socket.io.js"></script>

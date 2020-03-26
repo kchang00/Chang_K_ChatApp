@@ -1,18 +1,36 @@
 .new-message { 
-    span { font-size: 0.8rem; display: block; margin-bottom: 2px; }
-
     width: 45%;
-    padding: 8px 12px;
-    background-color: white; 
     border-radius: 8px;
     margin-bottom: 1rem;
-
     float:left;
     clear: both;
+    color: white;
+    background-color: $light-green2;
+
+    .message-name{ 
+        background: $medium-green2;
+    }
 }
 
 .my-message {
     float: right !important;
-    background-color: #86bf9d;
+    background-color: $light-green;
     color: white;
+
+    .message-name{ 
+        background: $medium-green;
+    }
+}
+
+.message-name{ 
+    font-size: 0.8rem; 
+    display: block; 
+    margin-bottom: 2px;
+    border-radius: 8px 8px 0px 0px; 
+    padding: 8px 12px;
+}
+
+.message-content{
+    padding: 8px 12px;
+    border-radius: 8px;
 }
