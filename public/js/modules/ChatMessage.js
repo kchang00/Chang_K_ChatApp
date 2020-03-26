@@ -5,10 +5,10 @@
 export default {
     props: ['msg'],
     template: `
-        <p class="new-message" :class="{ 'my-message' : matchedID }">
-            <span>{{msg.message.name}} says:</span>
-            {{msg.message.content}}
-        </p>
+        <div class="new-message" :class="{ 'my-message' : matchedID }">
+            <p class="message-name">{{msg.message.name}}</p>
+            <p class="message-content">{{msg.message.content}}</p>
+        </div>
     `,
     
     data: function() {

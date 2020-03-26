@@ -1,12 +1,12 @@
 {
-  "name": "vanrys_t_chatapp",
+  "name": "chang_k_chatapp",
   "version": "1.0.0",
-  "description": "social media app ",
+  "description": "chat app for shy people",
   "main": "app.js",
   "scripts": {
     "start": "node app"
   },
-  "author": "TVR",
+  "author": "kchang",
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",

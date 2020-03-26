@@ -2,6 +2,15 @@
 import ChatMessage from "./modules/ChatMessage.js";
 
 const socket = io();
+    //   subBtn = document.getElementById('subBtn');
+
+// function submitOnEnter(event){
+//     debugger;
+//     if(event.which === 13 && !event.shiftKey){
+//         event.target.form.dispatchEvent(new Event('submit', {cancelable: true}));
+//         event.preventDefault(); // Prevents the addition of a new line in the text field (not needed in a lot of cases)
+//     }
+// }
 
 function setUserId({sID, message}) {
     // debugger;
@@ -12,7 +21,7 @@ function setUserId({sID, message}) {
 }
 
 function runDisconnectMessage(packet) {
-    debugger;
+    // debugger;
     console.log(packet);
 }
 
@@ -66,3 +75,4 @@ const vm = new Vue({
 socket.addEventListener('connected', setUserId);
 socket.addEventListener('user_disconnect', runDisconnectMessage);
 socket.addEventListener('new_message', appendNewMessage);
+// subBtn.addEventListener('keypress', submitOnEnter);
