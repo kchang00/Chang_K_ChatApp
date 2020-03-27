@@ -7,22 +7,32 @@
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/main.css">
+	<link rel="icon" type="image/png" sizes="16x16" href="images/shyhi_favicon.png">
 	<script src="https://unpkg.com/vue"></script>
 </head>
 
 <body>
 	<main id="app">
-		<section class="messages">
+		<h1 class='hidden'>ShyHi Chat</h1>
+		<img class="logo" src="images/shyhi_logo.svg" alt="ShyHi Chat Logo">
+		<section class='messages'>
+			<h2 class='hidden'>Sent Messages</h2>
 			<ul id="messages">
 				<!-- render a new message component for every message -->
 				<newmessage :msg="message" v-for="message in messages"></newmessage>
 			</ul>
 		</section>
-		<section class="form-container">
+		<section class='form-container'>
+			<section class="extra-info">
+				<h2 class='hidden'>Live Chat Info</h2>
+				<p class='typing' v-if="typing">{{typing}} is typing...</p>
+				<p class='total-users'>{{connections}} shy person(s) here</p>
+			</section>
+			<h2 class='hidden'>Type Area</h2>
 			<form>
-				<input type="text" id="nickname" class="nickname" placeholder="Anonymous (Change nickname)">
+				<input v-model="nickName" type="text" id="nickname" class="nickname" placeholder="Anonymous (Change nickname)">
 				<div class="msg-btn-con">
-					<textarea v-model="message" class="message" type="text" autocomplete="off" id="textarea" placeholder="Say something..."></textarea>
+					<textarea v-model="message" class="message" type="text" autocomplete="off" id="textarea" placeholder="Whisper something..."></textarea>
 					<button @click.prevent="dispatchMessage" id="subBtn"><i class="fa fa-paper-plane-o"></i></button>
 				</div>
 			</form>

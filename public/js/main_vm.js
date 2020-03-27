@@ -4,27 +4,20 @@ import ChatMessage from "./modules/ChatMessage.js";
 const socket = io();
     //   subBtn = document.getElementById('subBtn');
 
-// function submitOnEnter(event){
-//     debugger;
-//     if(event.which === 13 && !event.shiftKey){
-//         event.target.form.dispatchEvent(new Event('submit', {cancelable: true}));
-//         event.preventDefault(); // Prevents the addition of a new line in the text field (not needed in a lot of cases)
-//     }
-// }
-
-function setUserId({sID, message}) {
+function setUserId({sID}) {
     // debugger;
     // testing in multiple browsers, you will have different IDs
-    // console.log(packet);
-
+    // pass in sID into vue socketID
     vm.socketID = sID;
+    console.log(sID, '(you) joined');
 }
 
-function runDisconnectMessage(packet) {
+function runConnectionMessage(packet) {
     // debugger;
     console.log(packet);
 }
 
+// pass in data from ChatMessage.js props
 function appendNewMessage(msg) {
     // take the incoming message and push it into the Vue instance
     // into the messages array
@@ -37,7 +30,35 @@ const vm = new Vue({
         socketID: "",
         messages: [],
         message: "",
-        nickName: ""
+        nickName: "",
+        typing: false,
+        connections: 0,
+    },
+
+    // vue created method
+    created() {
+        // Listening to typing event emitted from the server and setting the data (nickname) to the UI
+        socket.on('typing', (data) => {
+            this.typing = data;
+        })
+
+         // Listening to stopTyping event emitted from the server and setting the typing property to false
+        socket.on('stopTyping', () => {
+            this.typing = false;
+        })
+
+        socket.on('connections', (data) => {
+            this.connections = data;
+        })
+    },
+
+    // vue watch hook
+    watch: {
+            
+        // watching for changes in the message textarea and emitting the 'typing' or 'stopTyping' event
+        message(value) {
+            value ? socket.emit('typing', this.nickName || "anonymous") : socket.emit('stopTyping')
+        }
     },
 
     methods: {
@@ -45,7 +66,7 @@ const vm = new Vue({
         // using two way binding
         dispatchMessage() {
             //emit a message event and sent the message to the server
-            console.log('handle send message');
+            // console.log('handle send message');
             socket.emit('chat_message', {
                 content: this.message,
                 // || = shorthand for or operator (called a double pipe operator)
@@ -70,9 +91,19 @@ const vm = new Vue({
     
 }).$mount("#app");
 
+// function submitOnEnter(event){
+//     if(event.which === 13 && !event.shiftKey){
+//         debugger;
+//         event.preventDefault(); // Prevents the addition of a new line in the text field (not needed in a lot of cases)
+//         event.target.dispatchEvent();
+//     }
+// }
+
 // event handling -> these events come from the server
 // emits are in app.js ('______, function')
+// listening for custom events tracked and fired by socket.io (similar to listening for a click)
 socket.addEventListener('connected', setUserId);
-socket.addEventListener('user_disconnect', runDisconnectMessage);
+socket.addEventListener('user_disconnect', runConnectionMessage);
+socket.addEventListener('user_connect', runConnectionMessage);
 socket.addEventListener('new_message', appendNewMessage);
 // subBtn.addEventListener('keypress', submitOnEnter);
