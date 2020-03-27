@@ -1,4 +1,4 @@
-# Ontario Summer
+<img src="/public/images/shyhi_logo.svg" alt="ShyHi Logo" width="400">
 
 A chat app for the quiet ones. View the live link [here](https://k-chat-app.herokuapp.com/).
 
