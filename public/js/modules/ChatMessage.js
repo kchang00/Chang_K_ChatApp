@@ -5,7 +5,7 @@
 export default {
     props: ['msg'],
     template: `
-        <div class="new-message" :class="{ 'my-message' : matchedID }">
+        <div class="new-message slide-in" :class="{ 'my-message' : matchedID }">
             <p class="message-name">{{msg.message.name}}</p>
             <p class="message-content">{{msg.message.content}}</p>
         </div>

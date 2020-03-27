@@ -6,6 +6,9 @@
     clear: both;
     color: white;
     background-color: $light-green2;
+    opacity: 0;
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
 
     .message-name{ 
         background: $medium-green2;
@@ -16,6 +19,9 @@
     float: right !important;
     background-color: $light-green;
     color: white;
+    opacity: 0;
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
 
     .message-name{ 
         background: $medium-green;
@@ -33,4 +39,23 @@
 .message-content{
     padding: 8px 12px;
     border-radius: 8px;
+}
+
+.slide-in {
+    animation: slide-in 0.5s forwards ease;
+    -webkit-animation: slide-in 0.5s forwards ease;
+}
+    
+@-webkit-keyframes slide-in {
+    100% {
+        -webkit-transform: translateX(0%);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-in {
+    100% {
+        transform: translateX(0%);
+        opacity: 1;
+    }
 }
