@@ -1,5 +1,7 @@
 <img src="/public/images/shyhi_logo.svg" alt="ShyHi Logo" width="400">
 
+# ShyHi Chat
+
 A chat app for the quiet ones. View the live link [here](https://k-chat-app.herokuapp.com/).
 
 ## Built with
@@ -17,7 +19,7 @@ If you run the `cat package.json` command, you'll see that you need these packag
 * NPM
 * Node JS
 
-To install: `npm install`
+To install: `npm install`. The app is on port 3030.
 
 ## Authors
 
